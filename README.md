@@ -1,41 +1,11 @@
 # dotnet-wg-manager
 
+## give runtime user access to run systemctl commands without password
 
-// See https://aka.ms/new-console-template for more information
-using System.Diagnostics;
-using System.Text.RegularExpressions;
+/etc/sudoers.d/custom
+alex ALL = (root) NOPASSWD: /usr/bin/systemctl restart wg-quick@home
 
-Console.WriteLine("Hello, World!");
-Console.WriteLine("Hello, World!");
-var psi = new ProcessStartInfo();
-psi.FileName = "systemctl";
-psi.Arguments = "status wg-quick@home";
-psi.RedirectStandardOutput = true;
-psi.RedirectStandardError = true;
+## run site as systemd service
 
-Process proc = new Process
-{
-  StartInfo = psi
-};
-
-
-proc.Start();
-
-string error = proc.StandardError.ReadToEnd();
-
-if (!string.IsNullOrEmpty(error))
-  Console.WriteLine("error: " + error);
-
-string output = proc.StandardOutput.ReadToEnd();
-
-
-
-proc.WaitForExit();
-
-Console.WriteLine(output);
-
-var statusPattern = @"Active: (?<status>\S*)\s";
-
-var matches = Regex.Matches(output, statusPattern);
-Console.WriteLine(matches);
+https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-6.0
 

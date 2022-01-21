@@ -4,8 +4,6 @@ using System.Text.RegularExpressions;
 Console.WriteLine("Hello, World!");
 Console.WriteLine("Hello, World!");
 var psi = new ProcessStartInfo();
-// /etc/sudoers.d/custom
-// alex ALL = (root) NOPASSWD: /usr/bin/systemctl restart wg-quick@home
 
 
 psi.FileName = "systemctl";
@@ -44,6 +42,3 @@ Console.WriteLine(status);
 
 
 Console.WriteLine("end");
-
-// runtime security
-// https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-6.0
